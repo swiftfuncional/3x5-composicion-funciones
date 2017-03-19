@@ -16,16 +16,19 @@ func getValidPrices(values: [AnyObject]) -> [Int] {
 	return prices
 }
 
-func formatPrice(locale: String, price: Int) -> String {
+func getFormatter(locale: String) -> NumberFormatter {
+	let formatter = NumberFormatter()
+	formatter.numberStyle = .currency
+	formatter.locale = Locale(identifier: locale)
 
+	return formatter
+}
+
+func formatPrice(locale: String, price: Int) -> String {
 	if price == 0 {
 		return "Free"
 	} else {
-		let formatter = NumberFormatter()
-		formatter.numberStyle = .currency
-		formatter.locale = Locale(identifier: locale)
-
-		return formatter.string(from: NSNumber(value: price))!
+		return getFormatter(locale: locale).string(from: NSNumber(value: price))!
 	}
 }
 
