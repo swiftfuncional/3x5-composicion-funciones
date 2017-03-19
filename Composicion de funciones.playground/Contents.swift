@@ -5,15 +5,19 @@ func parseJSON(json: String) -> [AnyObject] {
 }
 
 func getValidPrices(values: [AnyObject]) -> [Int] {
-	var prices = [Int]()
-
-	for v in values {
-		if let price = v as? NSNumber {
-			prices.append(price.intValue)
-		}
+	let numbers = values.map { (value) -> NSNumber? in
+		return value as? NSNumber
 	}
 
-	return prices
+	let notNilNumbers = numbers.filter { (number) -> Bool in
+		return number != nil
+	}
+
+	let integers = notNilNumbers.map { (number) -> Int in
+		return number!.intValue
+	}
+
+	return integers
 }
 
 func getFormatter(locale: String) -> NumberFormatter {
