@@ -25,3 +25,5 @@ func formatPrices(json: String) -> [String] {
 
 	return labels
 }
+
+formatPrices(json: "[10,5,null,20,0]")
