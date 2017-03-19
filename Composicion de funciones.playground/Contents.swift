@@ -38,8 +38,10 @@ func formatPrice(locale: String) -> (Int) -> String {
 	}
 }
 
-func formatAll(prices: [Int]) -> [String] {
-	return prices.map(formatPrice)
+func formatAll(locale: String)-> ([Int]) -> [String] {
+	return {
+		return $0.map(formatPrice(locale: locale))
+	}
 }
 
 let formatPricesCombined = (parseJSON |> getValidPrices |> formatAll)
