@@ -1,5 +1,11 @@
 import UIKit
 
+func combine<T, U, V>(stepOne: @escaping (T) -> U, stepTwo: @escaping (U) -> V) -> ((T) -> V) {
+	return {
+		stepTwo(stepOne($0))
+	}
+}
+
 func parseJSON(json: String) -> [AnyObject] {
 	return try! JSONSerialization.jsonObject(with: json.data(using: .utf8)!, options: []) as! [AnyObject]
 }
@@ -34,8 +40,6 @@ func parseAndGetValid(json: String) -> [Int] {
 func formatAll(prices: [Int]) -> [String] {
 	return prices.map(formatPrice)
 }
-
-// func combine(stepOne: T -> U, stepTwo: U -> V) -> (T -> V)
 
 // parseJSON String -> [Int]
 // formatAll [Int] -> [String]
