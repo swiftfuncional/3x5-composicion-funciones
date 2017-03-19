@@ -42,7 +42,9 @@ func formatAll(locale: String)-> ([Int]) -> [String] {
 	return { $0.map(formatPrice(locale: locale)) }
 }
 
-let formatPricesCombined = (parseJSON |> getValidPrices |> formatAll)
+let formatAsSpanishCurrency = formatAll(locale: "es_ES")
+
+let formatPricesCombined = (parseJSON |> getValidPrices |> formatAsSpanishCurrency)
 
 formatPricesCombined("[10,5,null,20,0]")
 
