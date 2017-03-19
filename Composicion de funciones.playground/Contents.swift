@@ -2,7 +2,7 @@ import UIKit
 
 infix operator |>: AdditionPrecedence
 
-func combine<T, U, V>(stepOne: @escaping (T) -> U, stepTwo: @escaping (U) -> V) -> ((T) -> V) {
+func |> <T, U, V>(stepOne: @escaping (T) -> U, stepTwo: @escaping (U) -> V) -> ((T) -> V) {
 	return {
 		stepTwo(stepOne($0))
 	}
