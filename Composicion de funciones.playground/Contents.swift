@@ -28,10 +28,8 @@ func formatPrice(price: Int) -> String {
 }
 
 func formatPrices(json: String) -> [String] {
-
-	return getValidPrices(values: parseJSON(json: json)).map {
-		formatPrice(price: $0)
-	}
+	
+	return getValidPrices(values: parseJSON(json: json)).map(formatPrice)
 }
 
 formatPrices(json: "[10,5,null,20,0]")
