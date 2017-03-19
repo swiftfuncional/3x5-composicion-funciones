@@ -5,16 +5,16 @@ func parseJSON(json: String) -> [AnyObject] {
 }
 
 func getValidPrices(values: [AnyObject]) -> [Int] {
-	let numbers = values.map { (value) -> NSNumber? in
-		return value as? NSNumber
+	return values.map { (value) -> NSNumber? in
+		value as? NSNumber
 	}
 
 	let notNilNumbers = numbers.filter { (number) -> Bool in
-		return number != nil
+		number != nil
 	}
 
 	let integers = notNilNumbers.map { (number) -> Int in
-		return number!.intValue
+		number!.intValue
 	}
 
 	return integers
