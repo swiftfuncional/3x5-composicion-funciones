@@ -27,6 +27,10 @@ func formatPrice(price: Int) -> String {
 	return getFormatter(locale: "es_ES").string(from: NSNumber(value: price))!
 }
 
+func parseAndGetValid(json: String) -> [Int] {
+	return getValidPrices(values: parseJSON(json: json))
+}
+
 func formatAll(prices: [Int]) -> [String] {
 	return prices.map(formatPrice)
 }
@@ -35,9 +39,7 @@ func formatAll(prices: [Int]) -> [String] {
 // formatAll [Int] -> [String]
 
 func formatPrices(json: String) -> [String] {
-	return formatAll(prices:
-			getValidPrices(values:
-				parseJSON(json: json)))
+	return formatAll(prices: parseAndGetValid(json: json))
 }
 
 formatPrices(json: "[10,5,null,20,0]")
