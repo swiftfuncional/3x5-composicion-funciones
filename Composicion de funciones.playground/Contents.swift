@@ -27,12 +27,15 @@ func getFormatter(locale: String) -> NumberFormatter {
 	return formatter
 }
 
-func formatPrice(price: Int) -> String {
-	guard price > 0 else {
-		return "Free"
-	}
+func formatPrice(locale: String) -> (Int) -> String {
+	return {
+		guard $0 > 0 else {
+			return "Free"
+		}
 
-	return getFormatter(locale: "es_ES").string(from: NSNumber(value: price))!
+		return getFormatter(locale: locale)
+				.string(from: NSNumber(value: $0))!
+	}
 }
 
 func formatAll(prices: [Int]) -> [String] {
