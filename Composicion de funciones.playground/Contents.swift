@@ -35,6 +35,8 @@ func formatAll(prices: [Int]) -> [String] {
 	return prices.map(formatPrice)
 }
 
+// func combine(stepOne: T -> U, stepTwo: U -> V) -> (T -> V)
+
 // parseJSON String -> [Int]
 // formatAll [Int] -> [String]
 
