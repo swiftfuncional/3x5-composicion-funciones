@@ -16,6 +16,19 @@ func getValidPrices(values: [AnyObject]) -> [Int] {
 	return prices
 }
 
+func formatPrice(locale: String, price: Int) -> String {
+
+	if price == 0 {
+		return "Free"
+	} else {
+		let formatter = NumberFormatter()
+		formatter.numberStyle = .currency
+		formatter.locale = Locale(identifier: locale)
+
+		return formatter.string(from: NSNumber(value: price))!
+	}
+}
+
 func formatPrices(json: String) -> [String] {
 	let jsonParsed = parseJSON(json: json)
 
@@ -25,16 +38,6 @@ func formatPrices(json: String) -> [String] {
 
 	for p in prices {
 		let label: String
-
-		if p == 0 {
-			label = "Free"
-		} else {
-			let formatter = NumberFormatter()
-			formatter.numberStyle = .currency
-			formatter.locale = Locale(identifier: "es_ES")
-
-			label = formatter.string(from: NSNumber(value: p))!
-		}
 
 		labels.append(label)
 	}
