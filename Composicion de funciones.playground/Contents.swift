@@ -40,8 +40,7 @@ func formatPrices(json: String) -> [String] {
 	var labels = [String]()
 
 	for p in prices {
-		let label: String
-
+		let label = formatPrice(locale: "es_ES", price: p)
 		labels.append(label)
 	}
 
