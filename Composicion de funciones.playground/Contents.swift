@@ -1,7 +1,11 @@
 import UIKit
 
+func parseJSON(json: String) -> [AnyObject] {
+	return try! JSONSerialization.jsonObject(with: json.data(using: .utf8)!, options: []) as! [AnyObject]
+}
+
 func formatPrices(json: String) -> [String] {
-	let prices = try! JSONSerialization.jsonObject(with: json.data(using: .utf8)!, options: []) as! [AnyObject]
+	let prices = parseJSON(json: json)
 
 	var labels = [String]()
 
@@ -27,3 +31,4 @@ func formatPrices(json: String) -> [String] {
 }
 
 formatPrices(json: "[10,5,null,20,0]")
+
