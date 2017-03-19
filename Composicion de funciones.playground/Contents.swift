@@ -42,12 +42,7 @@ func formatAll(prices: [Int]) -> [String] {
 // parseJSON String -> [Int]
 // formatAll [Int] -> [String]
 
-func formatPrices(json: String) -> [String] {
-	let combinedFunction = combine(stepOne: parseAndGetValid, stepTwo: formatAll)
-	return combinedFunction(json)
-}
-
-let formatPricesCombined = (parseJSON |> getValidPrices)
+let formatPricesCombined = (parseJSON |> getValidPrices |> formatAll)
 
 formatPrices(json: "[10,5,null,20,0]")
 
