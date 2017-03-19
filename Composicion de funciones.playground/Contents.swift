@@ -34,7 +34,8 @@ func formatPrice(price: Int) -> String {
 }
 
 func parseAndGetValid(json: String) -> [Int] {
-	return getValidPrices(values: parseJSON(json: json))
+	let combinedFunction = combine(stepOne: parseJSON, stepTwo: getValidPrices)
+	return combinedFunction(json)
 }
 
 func formatAll(prices: [Int]) -> [String] {
@@ -45,7 +46,8 @@ func formatAll(prices: [Int]) -> [String] {
 // formatAll [Int] -> [String]
 
 func formatPrices(json: String) -> [String] {
-	return formatAll(prices: parseAndGetValid(json: json))
+	let combinedFunction = combine(stepOne: parseAndGetValid, stepTwo: formatAll)
+	return combinedFunction(json)
 }
 
 formatPrices(json: "[10,5,null,20,0]")
