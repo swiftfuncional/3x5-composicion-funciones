@@ -25,11 +25,11 @@ func getFormatter(locale: String) -> NumberFormatter {
 }
 
 func formatPrice(locale: String, price: Int) -> String {
-	if price == 0 {
+	guard price > 0 else {
 		return "Free"
-	} else {
-		return getFormatter(locale: locale).string(from: NSNumber(value: price))!
 	}
+
+	return getFormatter(locale: locale).string(from: NSNumber(value: price))!
 }
 
 func formatPrices(json: String) -> [String] {
