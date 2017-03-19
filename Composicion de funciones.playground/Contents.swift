@@ -39,10 +39,7 @@ func formatAll(prices: [Int]) -> [String] {
 	return prices.map(formatPrice)
 }
 
-// parseJSON String -> [Int]
-// formatAll [Int] -> [String]
-
 let formatPricesCombined = (parseJSON |> getValidPrices |> formatAll)
 
-formatPrices(json: "[10,5,null,20,0]")
+formatPricesCombined("[10,5,null,20,0]")
 
